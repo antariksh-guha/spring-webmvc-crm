@@ -1,11 +1,13 @@
 package com.spring.mini.project.controller;
 
 import com.spring.mini.project.DAO.DAOUtils;
+import com.spring.mini.project.DTO.StudentDTO;
 import com.spring.mini.project.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -21,5 +23,21 @@ public class CRMController {
         List<Student> studentList=daoUtils.loadStudents();
         model.addAttribute("students", studentList);
         return "student-list";
+    }
+
+    @GetMapping("/addstudent")
+    public String addStudent(Model model)
+    {
+        StudentDTO studentDTO =new StudentDTO();
+        model.addAttribute("student", studentDTO);
+        return "add-student";
+    }
+
+    @ResponseBody
+    @GetMapping("/savestudent")
+    public String saveStudent(StudentDTO studentDTO)
+    {
+        daoUtils.saveStudent(studentDTO);
+        return "Student saved....";
     }
 }

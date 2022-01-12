@@ -1,5 +1,6 @@
 package com.spring.mini.project.DAO;
 
+import com.spring.mini.project.DTO.StudentDTO;
 import com.spring.mini.project.config.AppConfig;
 import com.spring.mini.project.mapper.StudentRowMapper;
 import com.spring.mini.project.model.Student;
@@ -25,5 +26,18 @@ public class DAOUtilsImpl implements DAOUtils{
         List<Student> query = jdbcTemplate.query(sql, new StudentRowMapper());
 
         return query;
+    }
+
+    @Override
+    public void saveStudent(StudentDTO studentDTO) {
+
+        Object[] sqlParameters={studentDTO.getName(),studentDTO.getMarks()};
+
+        String sql = "insert into students (name,marks) values(?,?)";
+
+        jdbcTemplate.update(sql, sqlParameters);
+
+        System.out.println("One date updated...");
+
     }
 }
