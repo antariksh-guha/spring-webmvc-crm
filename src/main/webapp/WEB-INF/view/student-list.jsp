@@ -10,6 +10,10 @@
 <body>
     <h1 align="center">Students Management System</h3><br>
     <div align="center">
+
+    <form action="addstudent">
+        <input type="submit" value="ADD"/>
+    </form>
         <table border="1">
             <thead>
                 <tr>
