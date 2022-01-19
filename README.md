@@ -1,1 +1,1 @@
-# spring-crm
+# spring-webmvc-crm
